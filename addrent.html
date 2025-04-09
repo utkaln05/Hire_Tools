@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-commerce Product Form</title>
+<link rel="stylesheet" href="try.css">
+<script defer src="try.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="login-heading">
+    <img src="Images/logo3.png" alt="Hire Tools" title="Hire Tools" />
+  </div>
+  <h2>Add New Tool</h2>
+  <form action="addrent.php" method="post">
+  
+    <label for="productName">Tool Name:</label>
+    <input type="text" id="productName" name="productName" required>
+    
+    <label for="productDescription">Product Description:</label>
+    <textarea id="productDescription" name="productDescription" required></textarea>
+    
+    <label for="productPrice">Tool Rent Price per Hour ($):</label>
+    <input type="number" id="productPrice" name="productPrice" min="0" step="0.01" required>
+    <!-- <label for="productCategory">Product Category:</label> -->
+    <!-- <select id="productCategory" name="productCategory" required> -->
+      <!-- <option value="">Select Category</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Books">Books</option> -->
+      <!-- Add more options as needed -->
+    </select>
+    
+    <label for="productQuantity">Quantity in Stock:</label>
+    <input type="number" id="productQuantity" name="productQuantity" min="0" required>
+
+    <label for="MobileNo">Mobile No.:</label>
+    <input type="text" id="MobileNo" name="MobileNo" required>
+
+    <label for="Address">Address:</label>
+    <textarea id="Address" name="Address" required></textarea>
+
+    <label for="productImage">Tool Image:</label>
+    <input type="file" id="productImage" name="productImage" accept="image/*" required>
+    
+    <button type="submit">Add Product</button>
+  </form>
+</div>
+
+<script src="try.js"></script>
+</body>
+</html>
