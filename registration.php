@@ -24,9 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Pass = $_POST['Pass'];
 
     // Prepare SQL query to insert data
-    $sql = "INSERT INTO `rent` (`toolId`, `toolName`, `Description`, `toolPrice`, `MobileNo`, `quantity`, `Image`) VALUES (NULL, '$ToolName', '$Description', '$toolPrice', '$MobileNo', '$quantity', '$Image')";
 
-    $sql = "INSERT INTO `try2` (`Username`, `email`, `mob`, `Pass`) VALUES ('$Username'$email', '$mob', '$Pass')";
+    $sql = "INSERT INTO `try2` (`Username`, `email`, `mob`, `Pass`) VALUES ('$Username','$email', '$mob', '$Pass')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Registration Sucessful')</script>";
