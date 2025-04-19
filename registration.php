@@ -1,9 +1,9 @@
 <?php
-// Database connection
+// Set up database connection
 $servername = "localhost";
-$username = "root";  // Default XAMPP MySQL user
-$password = "";  // Default XAMPP MySQL password is empty
-$dbname = "fixyfy";
+$username = "root";
+$password = "";
+$dbname = "finalproject";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -13,34 +13,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sanitize and validate input
-    $userName = $conn->real_escape_string($_POST['UserName']);
-    $email = $conn->real_escape_string($_POST['Email']);
-    $mobileNo = $conn->real_escape_string($_POST['MobileNo']);
-    $nPassword = $conn->real_escape_string($_POST['Npassword']);
-    $cPassword = $conn->real_escape_string($_POST['Cpassword']);
+// Assuming you have a form submission or some data to insert
+// For example, if you have form fields named 'name' and 'email'
 
-    // Check if passwords match
-    if ($nPassword !== $cPassword) {
-        echo "<script>alert('Passwords do not match.'); window.history.back();</script>";
-        exit;
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $ToolName = $_POST['productName'];
+    $Username = $_POST['Username'];
+    $email = $_POST['email'];
+    $mob = $_POST['mob'];
+    $Pass = $_POST['Pass'];
 
-    // Hash the password for security
-    $hashedPassword = password_hash($nPassword, PASSWORD_DEFAULT);
+    // Prepare SQL query to insert data
+    $sql = "INSERT INTO `rent` (`toolId`, `toolName`, `Description`, `toolPrice`, `MobileNo`, `quantity`, `Image`) VALUES (NULL, '$ToolName', '$Description', '$toolPrice', '$MobileNo', '$quantity', '$Image')";
 
-    // Insert into the database
-    $sql = "INSERT INTO `try2` (`Username`, `email`, `mob`, `pass`) VALUES ('$userName', '$email', '$mobileNo', '$hashedPassword')";
+    $sql = "INSERT INTO `try2` (`Username`, `email`, `mob`, `Pass`) VALUES ('$Username'$email', '$mob', '$Pass')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Registration successful!'); window.location.href = 'login.html';</script>";
+        echo "<script>alert('Registration Sucessful')</script>";
+        header("location:message.html");
+        
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 
-// Close the connection
+// Close database connection
 $conn->close();
 ?>
