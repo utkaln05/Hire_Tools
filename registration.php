@@ -17,22 +17,43 @@ if ($conn->connect_error) {
 // For example, if you have form fields named 'name' and 'email'
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $ToolName = $_POST['productName'];
-    $Username = $_POST['Username'];
-    $email = $_POST['email'];
-    $mob = $_POST['mob'];
-    $Pass = $_POST['Pass'];
+    $Username = isset($_POST['Username']) ? trim($_POST['Username']) : '';
+    $email    = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $mob      = isset($_POST['mob']) ? trim($_POST['mob']) : '';
+    $PassRaw  = isset($_POST['Pass']) ? $_POST['Pass'] : '';
+    $Confirm  = isset($_POST['ConfirmPass']) ? $_POST['ConfirmPass'] : '';
 
-    // Prepare SQL query to insert data
+    if ($Username === '' || $email === '' || $mob === '' || $PassRaw === '' || $Confirm === '') {
+        // Basic validation failed
+        header('Location: registration.html');
+        exit;
+    }
 
-    $sql = "INSERT INTO `try2` (`Username`, `email`, `mob`, `Pass`) VALUES ('$Username','$email', '$mob', '$Pass')";
+    if ($PassRaw !== $Confirm) {
+        // Passwords do not match
+        header('Location: registration.html');
+        exit;
+    }
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Registration Sucessful')</script>";
-        header("location:message.html");
-        
+    $Pass = password_hash($PassRaw, PASSWORD_DEFAULT);
+
+    // Prepared statement
+    $stmt = $conn->prepare("INSERT INTO `try2` (`Username`, `email`, `mob`, `Pass`) VALUES (?, ?, ?, ?)");
+    if ($stmt) {
+        $stmt->bind_param('ssss', $Username, $email, $mob, $Pass);
+        if ($stmt->execute()) {
+            header("Location: message.html");
+            exit;
+        } else {
+            // Log error in server logs
+            error_log('registration.php insert failed: ' . $stmt->error);
+            header('Location: registration.html');
+            exit;
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        error_log('registration.php prepare failed: ' . $conn->error);
+        header('Location: registration.html');
+        exit;
     }
 }
 

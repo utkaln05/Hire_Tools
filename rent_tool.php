@@ -1,5 +1,5 @@
 <?php
-    
+    require_once __DIR__ . '/auth.php';
     $con = new mysqli("localhost", "root", "", "finalproject") or die("connection failed");
     $select_query="Select * from rent";
 ?>
@@ -95,30 +95,26 @@
             
             // $row=mysqli_fetch_assoc($result_query);
             while( $row=mysqli_fetch_assoc($result_query)){
-                $title=$row['toolName'];
-                $dec=$row['Description'];        
-                $image=$row['Image'];
-                $price=$row['toolPrice'];
-                $img2="img/".$image;
+                $title = htmlspecialchars($row['toolName'] ?? '', ENT_QUOTES, 'UTF-8');
+                $dec   = htmlspecialchars($row['MobileNo'] ?? '', ENT_QUOTES, 'UTF-8');
+                $image = htmlspecialchars($row['Image'] ?? '', ENT_QUOTES, 'UTF-8');
+                $price = htmlspecialchars($row['toolPrice'] ?? '', ENT_QUOTES, 'UTF-8');
             echo "<div class='boxes'>
             <div class='hero_img'>
-                <img src='$img2'>
+                <img src='$image' alt='Tool image'>
             </div>
             <div class='machine-name'>
                 <p>$title</p>
             </div>
             <div class='price'>
-                <p>$price</p>
+                <p>RS:$price</p>
             <br>
                 <div class='Discription'>
-
-                    <a>$dec</a>
-                </div>;
-           
-            
+                    <a><b>Contact: $dec</b></a>
+                </div>
         </div>
         <div class='rent'>
-            <button>Contact</button>
+            <button type='button'>Contact</button>
         </div>
     </div>";
 }
@@ -155,10 +151,10 @@
 
     <section class="footer">
         <div class="left-side-footer">
-            <p>&copy;2022 All Rights Reserved.AgZone.</p>
+            <p>&copy;2025 All Rights Reserved </p>
         </div>
         <div class="right-side-footer">
-            <p>Web Design and Development by<a href="index.html">AgZone Team</a></p>
+            <p>Web Design and Development by<a href="index.html">Elite Team</a></p>
         </div>
     </section>
 

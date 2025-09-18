@@ -1,7 +1,8 @@
 <?php
       session_start();
-      if(isset($_SESSION['login'])||$_SESSION['login']!=true){
-        header("location login.html");
+      // Guard route: allow only authenticated users
+      if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+        header("Location: login.html");
         exit;
       }
 ?>

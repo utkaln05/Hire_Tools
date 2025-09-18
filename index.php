@@ -1,5 +1,4 @@
-
-
+<?php require_once __DIR__ . '/auth.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -90,7 +89,7 @@
       </div>
       <div class="hero-image">
         <video autoplay muted loop>
-          <source src="Iamages/Video.mp4" type="video/mp4" />
+          <source src="Images/Video.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -106,8 +105,8 @@
     <div class="sub-home">
       <div class="looking-for">
       
-      <div class="card">
-      <a href="login.html" style="text.decoration:none">
+      <div class="card ">
+      <a  href="./login.html" style="text.decoration:none">
       <div class="img">
             <img src="Images/machine-1.jpeg" />
           </div>
@@ -128,8 +127,8 @@
         </a>
         </div>
         
-        <div class="card">
-            <a href="login.html">
+        <div class="card" >
+            <a  href="./login.html">
           <div class="img">
             <img src="Images/machine-3.jpeg" />
           </div>
@@ -147,8 +146,10 @@
     <div class="sub-hero-image" id="sub-hero-image"></div>
 <section class="footer">
       <div class="left-side-footer">
-        <p>&copy;2024 All Rights Reserved.Hire Tools.</p>
+        <p>&copy;2025 All Rights Reserved.Hire Tools.</p>
       </div>
     </section>
+    <script src="./index.js"></script>
   </body>
+  
 </html>

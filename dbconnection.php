@@ -1,10 +1,7 @@
 <?php
-session_start();
-
-
-$con = new mysqli("localhost", "root", "", "finalproject") or die("connection failed");
-//echo "Connection successfull";
-
-
-
+// Central DB connection file
+$con = new mysqli("localhost", "root", "", "finalproject");
+if ($con->connect_error) {
+    die("connection failed: " . $con->connect_error);
+}
 ?>

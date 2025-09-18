@@ -382,8 +382,6 @@ html{
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
-   
 }
 
 .price .star1{
@@ -783,4 +781,7 @@ input[type='radio']{
 
 #add #cancel_btn:hover{
     background-color: #444;
+}
+.Discription{
+
 }
