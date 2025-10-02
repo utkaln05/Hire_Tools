@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors/IDEs
+/.idea/
+/.vscode/
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Environment & logs
+.env
+*.log
+*.bak
+
+# Archives & dumps
+*.zip
+*.tar.gz
+*.sql
+*.sqlite
+*.db
+
+# Runtime uploads (don’t version user uploads)
+Images/tools/
+Images/sell/
+
+# Misc
+bash.exe.stackdump
